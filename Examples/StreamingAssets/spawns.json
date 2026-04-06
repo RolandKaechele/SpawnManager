@@ -1,0 +1,36 @@
+{
+  "spawns": [
+    {
+      "id": "green_spider_swarm",
+      "label": "Green Spider Swarm",
+      "prefabId": "GreenSpider",
+      "prefabResource": "Prefabs/Enemies/GreenSpider",
+      "spawnPointId": "spawn_north",
+      "count": 5,
+      "maxLive": 10,
+      "spawnInterval": 0.3,
+      "cooldown": 5.0,
+      "triggerType": 1,
+      "timerInterval": 30.0,
+      "spawnRadius": 2.0,
+      "usePool": true,
+      "spawnTag": "Enemy"
+    },
+    {
+      "id": "power_up_pickup",
+      "label": "Power-Up Pickup",
+      "prefabId": "PowerUp",
+      "prefabResource": "Prefabs/Items/PowerUp",
+      "spawnPointId": "spawn_center",
+      "count": 1,
+      "maxLive": 1,
+      "spawnInterval": 0.0,
+      "cooldown": 20.0,
+      "triggerType": 3,
+      "timerInterval": 60.0,
+      "spawnRadius": 0.5,
+      "usePool": true,
+      "spawnTag": "Pickup"
+    }
+  ]
+}

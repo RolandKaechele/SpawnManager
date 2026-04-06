@@ -1,0 +1,63 @@
+# SpawnManager
+
+Handles spawning and despawning of game objects with per-prefab object pooling, named spawn points, batch spawning, wave support, and JSON-driven mod-friendly definitions.
+
+## Features
+
+- Named `SpawnDefinition` assets configured in the Inspector or loaded from `StreamingAssets/spawns.json`
+- Per-prefab **object pools** — reuses instances instead of instantiating/destroying
+- World-space **SpawnPoint** components auto-register themselves at runtime
+- Trigger types: `Manual`, `OnStart`, `OnTriggerEnter`, `Timer`
+- `PauseSpawning()` / `ResumeSpawning()` for cutscenes and loading screens
+- `OnSpawnedCallback` and `OnDespawnedCallback` delegate hooks
+- Full Editor window with live instance counts, pause/resume and per-definition Spawn buttons
+- JSON modding support via `StreamingAssets/spawns.json` (entries merged by `id`)
+
+## Optional Integrations
+
+| Feature | Define Symbol |
+| --- | --- |
+| DOTween Pro (scale-punch spawn/despawn) | `SPAWNMANAGER_DOTWEEN` |
+| EnemyManager auto-registration | `SPAWNMANAGER_EEM` |
+| AiManager agent registration | `SPAWNMANAGER_AIM` |
+| EventManager events | `SPAWNMANAGER_EM` |
+| StateManager pause (Cutscene/Loading/Dialogue) | `SPAWNMANAGER_STM` |
+| MapLoaderFramework auto-despawn/spawn on chapter load | `SPAWNMANAGER_MLF` |
+| CutsceneManager pause during cutscenes | `SPAWNMANAGER_CSM` |
+
+## EventManager Events
+
+When `SPAWNMANAGER_EM` is active the following events are fired:
+
+| Event Key | Payload |
+| --- | --- |
+| `spawn.spawned` | `SpawnInstanceRecord` |
+| `spawn.despawned` | `SpawnInstanceRecord` |
+| `spawn.wave.completed` | `definitionId` (string) |
+
+## JSON Modding
+
+Place a `spawns.json` file in `StreamingAssets/` to override or extend spawn definitions at runtime without recompiling. Entries are merged by `id`.
+
+```json
+{
+  "spawns": [
+    {
+      "id": "green_spider_swarm",
+      "count": 8,
+      "timerInterval": 20.0
+    }
+  ]
+}
+```
+
+## Quick Start
+
+1. Add a `SpawnManager` component to a persistent GameObject.
+2. Add `SpawnPoint` components to world-space GameObjects and assign `pointId`.
+3. Define `SpawnDefinition` entries in the Inspector, referencing prefab resource paths.
+4. Call `SpawnManager.Instance.Spawn("green_spider_swarm")` from code or the Editor window.
+
+## License
+
+MIT
