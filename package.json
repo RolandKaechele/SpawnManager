@@ -1,13 +1,13 @@
 {
-  "name": "com.rolandkaechele.spawnmanager",
-  "version": "1.0.0",
-  "displayName": "SpawnManager",
-  "description": "Handles spawning and despawning of game objects with object pooling, named spawn points, batch/wave support and optional DOTween, EnemyManager, AiManager, EventManager, StateManager, MapLoaderFramework and CutsceneManager integration.",
-  "unity": "2022.3",
-  "author": {
-    "name": "Roland Kaechele"
-  },
-  "scripts": {
-    "postinstall": "node postinstall.js"
-  }
+    "name":  "com.rolandkaechele.spawnmanager",
+    "version":  "1.0.0",
+    "displayName":  "SpawnManager",
+    "description":  "Handles spawning and despawning of game objects with object pooling, named spawn points, batch/wave support and optional DOTween, EnemyManager, AiManager, EventManager, StateManager, MapLoaderFramework and CutsceneManager integration.",
+    "unity":  "2022.3",
+    "author":  {
+                   "name":  "Roland Kaechele"
+               },
+    "scripts":  {
+                    "postinstall":  "node postinstall.js"
+                }
 }
