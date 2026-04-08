@@ -48,13 +48,13 @@ namespace SpawnManager.Runtime
         }
 
         private void HandleSpawned(string defId, string instanceId, UnityEngine.GameObject go)
-            => _eventManager?.FireEvent("spawn.spawned", instanceId);
+            => _eventManager?.Fire("spawn.spawned", instanceId);
 
         private void HandleDespawned(string defId, string instanceId)
-            => _eventManager?.FireEvent("spawn.despawned", instanceId);
+            => _eventManager?.Fire("spawn.despawned", instanceId);
 
         private void HandleWaveCompleted(string defId)
-            => _eventManager?.FireEvent("spawn.wave.completed", defId);
+            => _eventManager?.Fire("spawn.wave.completed", defId);
     }
 }
 #endif

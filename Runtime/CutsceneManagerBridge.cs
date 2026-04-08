@@ -33,15 +33,17 @@ namespace SpawnManager.Runtime
         private void OnEnable()
         {
             if (_cutsceneManager == null) return;
-            _cutsceneManager.OnCutsceneStarted  += HandleCutsceneStarted;
-            _cutsceneManager.OnCutsceneFinished += HandleCutsceneFinished;
+            _cutsceneManager.OnSequenceStarted   += HandleCutsceneStarted;
+            _cutsceneManager.OnSequenceCompleted += HandleCutsceneFinished;
+            _cutsceneManager.OnSequenceSkipped   += HandleCutsceneFinished;
         }
 
         private void OnDisable()
         {
             if (_cutsceneManager == null) return;
-            _cutsceneManager.OnCutsceneStarted  -= HandleCutsceneStarted;
-            _cutsceneManager.OnCutsceneFinished -= HandleCutsceneFinished;
+            _cutsceneManager.OnSequenceStarted   -= HandleCutsceneStarted;
+            _cutsceneManager.OnSequenceCompleted -= HandleCutsceneFinished;
+            _cutsceneManager.OnSequenceSkipped   -= HandleCutsceneFinished;
         }
 
         private void HandleCutsceneStarted(string id)  => _spawnManager?.PauseSpawning();
