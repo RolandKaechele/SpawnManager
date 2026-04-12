@@ -11,7 +11,7 @@ Handles spawning and despawning of game objects with per-prefab object pooling, 
 - `PauseSpawning()` / `ResumeSpawning()` for cutscenes and loading screens
 - `OnSpawnedCallback` and `OnDespawnedCallback` delegate hooks
 - Full Editor window with live instance counts, pause/resume and per-definition Spawn buttons
-- JSON modding support via `StreamingAssets/spawns.json` (entries merged by `id`)
+- JSON modding support via `StreamingAssets/spawns/` (entries merged by `id`)
 
 ## Optional Integrations
 
@@ -37,7 +37,10 @@ When `SPAWNMANAGER_EM` is active the following events are fired:
 
 ## JSON Modding
 
-Place a `spawns.json` file in `StreamingAssets/` to override or extend spawn definitions at runtime without recompiling. Entries are merged by `id`.
+Place one or more `.json` files in `StreamingAssets/spawns/` to override or extend spawn definitions at runtime without recompiling.
+All `*.json` files in the folder are loaded and merged by `id` at startup.
+
+**Example:** `StreamingAssets/spawns/main.json`
 
 ```json
 {
@@ -65,9 +68,9 @@ Open via **JSON Editors → Spawn Manager** in the Unity menu bar, or via the **
 
 | Action | Result |
 | ------ | ------ |
-| **Load** | Reads `StreamingAssets/spawns.json`; creates the file if missing |
+| **Load** | Reads all `*.json` from `StreamingAssets/spawns/`; creates the folder if missing |
 | **Edit** | Add / remove / reorder entries using the Inspector list |
-| **Save** | Writes back to `StreamingAssets/spawns.json` and calls `AssetDatabase.Refresh()` |
+| **Save** | Writes to `StreamingAssets/spawns/spawns.json` and calls `AssetDatabase.Refresh()` |
 
 With **ODIN_INSPECTOR** active, the list uses Odin's enhanced drawer (drag-to-sort, collapsible entries).
 

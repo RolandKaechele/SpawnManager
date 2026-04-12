@@ -65,8 +65,8 @@ namespace SpawnManager.Runtime
         [Tooltip("Merge spawn definitions from StreamingAssets/<jsonPath> at startup.")]
         [SerializeField] private bool loadFromJson = false;
 
-        [Tooltip("Path relative to StreamingAssets/ (e.g. 'spawns.json').")]
-        [SerializeField] private string jsonPath = "spawns.json";
+        [Tooltip("Path relative to StreamingAssets/ (e.g. 'spawns/' or 'spawns.json').")]
+        [SerializeField] private string jsonPath = "spawns/";
 
         [Header("Debug")]
         [Tooltip("Log all spawn and despawn events to the Unity Console.")]
@@ -480,10 +480,22 @@ namespace SpawnManager.Runtime
         private void LoadJsonDefinitions()
         {
             string fullPath = Path.Combine(Application.streamingAssetsPath, jsonPath);
-            if (!File.Exists(fullPath)) return;
+            if (Directory.Exists(fullPath))
+            {
+                foreach (var file in Directory.GetFiles(fullPath, "*.json", SearchOption.TopDirectoryOnly))
+                    MergeSpawnsFromFile(file);
+            }
+            else if (File.Exists(fullPath))
+            {
+                MergeSpawnsFromFile(fullPath);
+            }
+        }
+
+        private void MergeSpawnsFromFile(string path)
+        {
             try
             {
-                string json = File.ReadAllText(fullPath);
+                string json = File.ReadAllText(path);
                 var root = JsonUtility.FromJson<SpawnDefinitionList>(json);
                 if (root?.spawns == null) return;
                 foreach (var def in root.spawns)
@@ -496,7 +508,7 @@ namespace SpawnManager.Runtime
             }
             catch (Exception e)
             {
-                Debug.LogWarning($"[SpawnManager] Failed to load JSON '{fullPath}': {e.Message}");
+                Debug.LogWarning($"[SpawnManager] Failed to load JSON '{path}': {e.Message}");
             }
         }
 
