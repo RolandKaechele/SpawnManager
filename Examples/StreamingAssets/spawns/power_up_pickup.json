@@ -1,21 +1,5 @@
-{
+﻿{
     "spawns":  [
-                   {
-                       "id":  "green_spider_swarm",
-                       "label":  "Green Spider Swarm",
-                       "prefabId":  "GreenSpider",
-                       "prefabResource":  "Prefabs/Enemies/GreenSpider",
-                       "spawnPointId":  "spawn_north",
-                       "count":  5,
-                       "maxLive":  10,
-                       "spawnInterval":  0.3,
-                       "cooldown":  5.0,
-                       "triggerType":  1,
-                       "timerInterval":  30.0,
-                       "spawnRadius":  2.0,
-                       "usePool":  true,
-                       "spawnTag":  "Enemy"
-                   },
                    {
                        "id":  "power_up_pickup",
                        "label":  "Power-Up Pickup",

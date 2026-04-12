@@ -4,7 +4,7 @@ Handles spawning and despawning of game objects with per-prefab object pooling, 
 
 ## Features
 
-- Named `SpawnDefinition` assets configured in the Inspector or loaded from `StreamingAssets/spawns.json`
+- Named `SpawnDefinition` assets configured in the Inspector or loaded from `StreamingAssets/spawns/`
 - Per-prefab **object pools** — reuses instances instead of instantiating/destroying
 - World-space **SpawnPoint** components auto-register themselves at runtime
 - Trigger types: `Manual`, `OnStart`, `OnTriggerEnter`, `Timer`
@@ -39,8 +39,9 @@ When `SPAWNMANAGER_EM` is active the following events are fired:
 
 Place one or more `.json` files in `StreamingAssets/spawns/` to override or extend spawn definitions at runtime without recompiling.
 All `*.json` files in the folder are loaded and merged by `id` at startup.
+Each file contains exactly one spawn entry and is named by spawn ID (e.g., `pickup_medikit.json`, `pickup_ammo.json`).
 
-**Example:** `StreamingAssets/spawns/main.json`
+**Example:** `StreamingAssets/spawns/green_spider_swarm.json`
 
 ```json
 {
@@ -70,7 +71,7 @@ Open via **JSON Editors → Spawn Manager** in the Unity menu bar, or via the **
 | ------ | ------ |
 | **Load** | Reads all `*.json` from `StreamingAssets/spawns/`; creates the folder if missing |
 | **Edit** | Add / remove / reorder entries using the Inspector list |
-| **Save** | Writes to `StreamingAssets/spawns/spawns.json` and calls `AssetDatabase.Refresh()` |
+| **Save** | Writes each entry as `<id>.json` to `StreamingAssets/spawns/`; entries without an `id` are skipped. Calls `AssetDatabase.Refresh()` |
 
 With **ODIN_INSPECTOR** active, the list uses Odin's enhanced drawer (drag-to-sort, collapsible entries).
 
