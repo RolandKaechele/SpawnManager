@@ -12,12 +12,14 @@ namespace SpawnManager.Editor
     public class SpawnManagerEditor : UnityEditor.Editor
     {
         private string _spawnId       = "";
-        private string _despawnId     = "";
         private string _despawnAllId  = "";
 
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
+
+            EditorGUILayout.Space(4);
+            if (GUILayout.Button("Open JSON Editor")) SpawnJsonEditorWindow.ShowWindow();
 
             var mgr = (SpawnManager.Runtime.SpawnManager)target;
 

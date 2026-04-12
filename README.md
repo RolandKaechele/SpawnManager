@@ -58,6 +58,20 @@ Place a `spawns.json` file in `StreamingAssets/` to override or extend spawn def
 3. Define `SpawnDefinition` entries in the Inspector, referencing prefab resource paths.
 4. Call `SpawnManager.Instance.Spawn("green_spider_swarm")` from code or the Editor window.
 
+
+## Editor Tools
+
+Open via **JSON Editors → Spawn Manager** in the Unity menu bar, or via the **Open JSON Editor** button in the SpawnManager Inspector.
+
+| Action | Result |
+| ------ | ------ |
+| **Load** | Reads `StreamingAssets/spawns.json`; creates the file if missing |
+| **Edit** | Add / remove / reorder entries using the Inspector list |
+| **Save** | Writes back to `StreamingAssets/spawns.json` and calls `AssetDatabase.Refresh()` |
+
+With **ODIN_INSPECTOR** active, the list uses Odin's enhanced drawer (drag-to-sort, collapsible entries).
+
+
 ## License
 
 MIT
